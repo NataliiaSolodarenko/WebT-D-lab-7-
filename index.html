@@ -79,6 +79,14 @@
     <button onclick="removeLargeDivs()">Видалити div з більше ніж 3 абзацами</button>
   </div>
 
+  <!-- Завдання на захист -->
+  <div class="section" id="marquee-section">
+    <h2>Завдання на захист: Бігучий рядок</h2>
+    <div class="output">
+      <div id="marqueeContainer" style="overflow: hidden; white-space: nowrap; width: 100%;"></div>
+    </div>
+  </div>
+
   <script>
     // Завдання №1
     let correctAnswer = 0;
@@ -202,8 +210,30 @@
       });
     }
 
+    // Завдання на захист: Бігучий рядок
+    const text = "Це якийсь приклад тексту для бігучого рядка.";
+    const container = document.getElementById("marqueeContainer");
+    const span = document.createElement("span");
+    span.textContent = text;
+    span.style.display = "inline-block";
+    span.style.position = "relative";
+    span.style.left = "100%";
+    container.appendChild(span);
+
+    let pos = 100;
+    function moveMarquee() {
+      pos -= 0.5;
+      if (pos < -span.offsetWidth) {
+        pos = container.offsetWidth;
+      }
+      span.style.left = pos + "px";
+      requestAnimationFrame(moveMarquee);
+    }
+    moveMarquee();
+
     nextTask();
-    showScene("start");і
+    showScene("start");і  
   </script>
+
 </body>
 </html>
